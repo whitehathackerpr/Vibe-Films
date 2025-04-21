@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   title: 'Vibe Films | Quality Ugandan & African Storytelling',
   description: 'Vibe Films is a Kampala-based Ugandan production company delivering high-quality African storytelling with striking visuals and innovative design.',
   keywords: 'Vibe Films, Uganda, Kampala, African, Storytelling, Film, Production, Movies, Series',
+  icons: {
+    icon: '/images/favicon.ico',
+  },
   openGraph: {
     title: 'Vibe Films | Quality Ugandan & African Storytelling',
     description: 'Vibe Films is a Kampala-based Ugandan production company delivering high-quality African storytelling with striking visuals and innovative design.',
@@ -25,6 +28,14 @@ export const metadata: Metadata = {
     siteName: 'Vibe Films',
     locale: 'en_UG',
     type: 'website',
+    images: [
+      {
+        url: '/images/logo.png',
+        width: 256,
+        height: 256,
+        alt: 'Vibe Films Logo',
+      },
+    ],
   },
 }
 

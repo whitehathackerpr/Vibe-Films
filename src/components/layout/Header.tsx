@@ -1,7 +1,6 @@
 "use client"
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { FaBars, FaTimes, FaFacebook, FaYoutube, FaSearch } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
@@ -69,6 +68,12 @@ const secondaryLinks = [
   { name: 'Contact', path: '/contact' },
 ]
 
+// Auth links
+const authLinks = [
+  { name: 'Login', path: '/login' },
+  { name: 'Sign Up', path: '/signup' },
+]
+
 // Social media links
 const socialLinks = [
   { name: 'Facebook', icon: FaFacebook, url: 'https://facebook.com/vibefilms' },
@@ -132,27 +137,48 @@ export default function Header() {
             ))}
           </div>
 
-          {/* Social Links & Search */}
-          <div className="flex items-center space-x-4">
-            {socialLinks.map((social) => (
-              <a
-                key={social.name}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-secondary transition-colors"
-                aria-label={social.name}
+          {/* Auth Links & Social Links */}
+          <div className="flex items-center">
+            {/* Auth Links */}
+            <div className="flex items-center mr-6">
+              {authLinks.map((link, index) => (
+                <Link
+                  key={link.name}
+                  href={link.path}
+                  className={cn(
+                    "text-sm font-medium py-1 px-3 transition-colors",
+                    index === 0 
+                      ? "text-white hover:text-secondary" 
+                      : "bg-secondary text-dark hover:bg-secondary-dark ml-3 rounded-sm"
+                  )}
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+
+            {/* Social Links & Search */}
+            <div className="flex items-center space-x-4">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-secondary transition-colors"
+                  aria-label={social.name}
+                >
+                  <social.icon className="w-4 h-4" />
+                </a>
+              ))}
+              <button 
+                onClick={() => setSearchOpen(!searchOpen)}
+                className="text-gray-300 hover:text-secondary transition-colors ml-2"
+                aria-label="Search"
               >
-                <social.icon className="w-4 h-4" />
-              </a>
-            ))}
-            <button 
-              onClick={() => setSearchOpen(!searchOpen)}
-              className="text-gray-300 hover:text-secondary transition-colors ml-2"
-              aria-label="Search"
-            >
-              <FaSearch className="w-4 h-4" />
-            </button>
+                <FaSearch className="w-4 h-4" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -162,15 +188,6 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="relative z-50 py-2">
           <div className="flex items-center">
-            <div className="w-14 h-14 relative mr-3">
-              <Image 
-                src="/logo.png" 
-                alt="Vibe Films Logo"
-                fill
-                className="object-contain"
-                priority
-              />
-            </div>
             <div className="font-serif font-bold text-white">
               <span className="text-3xl tracking-wider">VIBE</span>
               <span className="text-3xl text-secondary tracking-wider">FILMS</span>
@@ -325,6 +342,25 @@ export default function Header() {
                     key={link.name}
                     href={link.path}
                     className="text-gray-400 hover:text-secondary transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
+              
+              {/* Auth Links in Mobile Menu */}
+              <div className="flex flex-wrap gap-4 mt-6">
+                {authLinks.map((link, index) => (
+                  <Link
+                    key={link.name}
+                    href={link.path}
+                    className={cn(
+                      "py-2 px-4 font-medium",
+                      index === 0 
+                        ? "text-white border border-gray-600 hover:border-secondary hover:text-secondary transition-colors" 
+                        : "bg-secondary text-dark hover:bg-secondary-dark transition-colors"
+                    )}
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {link.name}

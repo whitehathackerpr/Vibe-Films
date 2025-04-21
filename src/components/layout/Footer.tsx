@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { FaFacebook, FaYoutube, FaMapMarkerAlt, FaPhone, FaEnvelope } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
 import NewsletterForm from '@/components/forms/NewsletterForm'
@@ -14,14 +13,6 @@ export default function Footer() {
           {/* Company Info */}
           <div>
             <div className="flex items-center mb-6">
-              <div className="w-12 h-12 relative mr-2">
-                <Image 
-                  src="/logo.png" 
-                  alt="Vibe Films Logo"
-                  fill
-                  className="object-contain"
-                />
-              </div>
               <div className="font-serif font-bold">
                 <span className="text-2xl">Vibe</span>
                 <span className="text-2xl text-secondary">Films</span>
