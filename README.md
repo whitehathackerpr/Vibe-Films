@@ -8,6 +8,7 @@ A modern, visually stunning website for Vibe Films, a Kampala-based Ugandan prod
 - Modern UI with animations and transitions
 - Rich media integration for video trailers and portfolio showcase
 - Optimized performance with Next.js
+- Clean, text-based branding with consistent styling
 
 ## Tech Stack
 
@@ -22,7 +23,7 @@ A modern, visually stunning website for Vibe Films, a Kampala-based Ugandan prod
 
 ### Prerequisites
 
-- Node.js (v14 or newer)
+- Node.js (v16 or newer)
 - npm or yarn
 
 ### Installation
@@ -57,11 +58,35 @@ A modern, visually stunning website for Vibe Films, a Kampala-based Ugandan prod
 
 5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Branding
+
+The Vibe Films branding is represented by text-only elements in the website:
+
+- **Header**: "VIBE FILMS" text logo (uppercase)
+- **Footer**: "Vibe Films" text logo (title case)
+- **Color scheme**: 
+  - Primary: Custom orange/red (#ff6c00)
+  - Secondary: As defined in Tailwind config
+  - Dark backgrounds with light text
+
+If you need to generate logo assets for other purposes, a utility script is included:
+
+```bash
+# Install the canvas dependency if not already installed
+npm install canvas
+
+# Run the logo generation script
+node create-logo.js
+```
+
+This will create PNG files for logo and favicon in the `public/images` directory.
+
 ## Project Structure
 
 ```
 vibe-films/
 ├── public/              # Static assets
+│   └── images/          # Images including logo and favicon
 ├── src/
 │   ├── app/             # Next.js App Router
 │   ├── components/      # React components
@@ -73,9 +98,30 @@ vibe-films/
 │   ├── styles/          # Global styles
 │   ├── types/           # TypeScript type definitions
 │   └── utils/           # Utility functions
+├── docs/                # Documentation
+├── create-logo.js       # Utility to generate logo assets
 ├── tailwind.config.js   # Tailwind CSS configuration
 └── next.config.js       # Next.js configuration
 ```
+
+## Development Guidelines
+
+### Utilities and Code Reuse
+
+- Common utilities should be placed in the `src/utils/` directory
+- Example: `imageUtils.ts` contains shared functions for image source handling
+
+### Component Structure
+
+- Layout components: `src/components/layout/`
+- Section components: `src/components/home/`, `src/components/about/`, etc.
+- Form components: `src/components/forms/`
+
+### Image Handling
+
+- Remote images (like Unsplash) are configured in `next.config.js`
+- Local images should be stored in `public/images/`
+- Use the `getImageSrc()` utility from `src/utils/imageUtils.ts` for fallback handling
 
 ## Deployment
 
@@ -109,6 +155,7 @@ The site can be deployed to various platforms:
 - E-commerce functionality for the shop
 - User authentication for comments and reviews
 - Analytics integration
+- Custom image upload for dynamic content
 
 ## License
 

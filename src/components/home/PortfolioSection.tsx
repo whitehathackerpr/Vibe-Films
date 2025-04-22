@@ -6,14 +6,7 @@ import Image, { StaticImageData } from 'next/image'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { FaArrowRight, FaPlayCircle } from 'react-icons/fa'
-
-// Default placeholder for images
-const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80';
-
-// Function to ensure we always have a valid image source
-const getImageSrc = (src: string | undefined): string | StaticImageData => {
-  return src || DEFAULT_IMAGE;
-};
+import { getImageSrc, DEFAULT_IMAGE } from '@/utils/imageUtils'
 
 // Define Project type
 type Project = {
@@ -179,7 +172,7 @@ export default function PortfolioSection() {
                   {/* Image Container */}
                   <div className="relative h-80 overflow-hidden">
                     <Image
-                      src={getImageSrc(project.image)}
+                      src={getImageSrc(project.image, DEFAULT_IMAGE)}
                       alt={project.title}
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-110"

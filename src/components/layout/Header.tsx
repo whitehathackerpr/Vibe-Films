@@ -39,6 +39,16 @@ const mainNavCategories = [
     ]
   },
   { 
+    name: 'Courses', 
+    path: '/courses',
+    subMenu: [
+      { name: 'Filmmaking', path: '/courses/filmmaking' },
+      { name: 'Screenwriting', path: '/courses/screenwriting' },
+      { name: 'Cinematography', path: '/courses/cinematography' },
+      { name: 'Acting', path: '/courses/acting' },
+    ]
+  },
+  { 
     name: 'Portfolio', 
     path: '/portfolio',
     subMenu: [

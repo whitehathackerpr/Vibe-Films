@@ -7,6 +7,7 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import ReactPlayer from 'react-player/lazy'
 import { FaPlay, FaChevronRight, FaInfoCircle } from 'react-icons/fa'
+import { getImageSrc, DEFAULT_THUMBNAIL } from "@/utils/imageUtils"
 
 // Sample featured movies (in a real implementation, these would come from a CMS or API)
 const featuredMovies = [
@@ -76,9 +77,6 @@ const featuredMovies = [
   },
 ];
 
-// Default placeholder for thumbnails
-const DEFAULT_THUMBNAIL = 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80';
-
 // Updated movie type to help with TypeScript
 type Movie = {
   id: number;
@@ -117,11 +115,6 @@ const StarRating = ({ rating }: { rating: number }) => {
       <span className="ml-1 text-white text-sm">{rating.toFixed(1)}</span>
     </div>
   );
-};
-
-// Function to ensure we always have a valid image source
-const getImageSrc = (src: string | undefined): string | StaticImageData => {
-  return src || DEFAULT_THUMBNAIL;
 };
 
 export default function MoviesSection() {
@@ -211,7 +204,7 @@ export default function MoviesSection() {
                 ) : (
                   <>
                     <Image
-                      src={getImageSrc(activeMovie.poster)}
+                      src={getImageSrc(activeMovie.poster, DEFAULT_THUMBNAIL)}
                       alt={activeMovie.title}
                       fill
                       className="object-cover"
@@ -297,7 +290,7 @@ export default function MoviesSection() {
                 >
                   <div className="w-32 h-24 relative flex-shrink-0">
                     <Image
-                      src={getImageSrc(movie.thumbnail)}
+                      src={getImageSrc(movie.thumbnail, DEFAULT_THUMBNAIL)}
                       alt={movie.title}
                       fill
                       className="object-cover"
@@ -334,7 +327,7 @@ export default function MoviesSection() {
                 >
                   <div className="w-32 h-24 relative flex-shrink-0">
                     <Image
-                      src={getImageSrc(movie.thumbnail)}
+                      src={getImageSrc(movie.thumbnail, DEFAULT_THUMBNAIL)}
                       alt={movie.title}
                       fill
                       className="object-cover"
